@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Country.css'
-const Country = ({country,handelCount,handleFlags}) => {
+const Country = ({country,handelCount,handleFlags,removeCountry}) => {
     const [visited,setvisited] = useState(false)
     // console.log(countrie.area.area)
     const handleBtn=()=>{
@@ -9,15 +9,17 @@ const Country = ({country,handelCount,handleFlags}) => {
         // setvisited(!visited)
         if(visited){
             setvisited (false) 
+            removeCountry(country)
         }else{
             setvisited(true)
-        }
-    handelCount(country)
-    }
+            handelCount(country)
 
+        }
+   
+    }
     return (
         <div className={`country-container ${visited &&'country-visited'}`}>
-            <img src= {country.flags.flags.png} alt="" />
+            <img src= {country.flags.flags.png} alt=""/>
             <h3>Name: {country.name.common}</h3>
             <h4>NameOfficial: {country.name.official}</h4>
 
@@ -29,8 +31,7 @@ const Country = ({country,handelCount,handleFlags}) => {
             <button onClick={()=>{
                 handleFlags(country.flags.flags.png)
             }}>click flags</button>
-         
-
+            <button>Delete</button>
         </div>
     );
 };

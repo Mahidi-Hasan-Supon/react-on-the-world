@@ -11,6 +11,12 @@ const Countris = ({fetchCountries}) => {
         const manageCountry = [...visiteCountry,country]
         setVisiteCountry(manageCountry);
     }
+    const removeCountry = (country)=>{
+        console.log(country)
+        const filterCountry = visiteCountry.filter(c=>c.name.common!=country.name.common)
+        setVisiteCountry(filterCountry)
+
+    }
     // flags
     const [visiteFlags,setVisiteFlags] =useState([])
     const handleFlags = (flags)=>{
@@ -24,7 +30,7 @@ const Countris = ({fetchCountries}) => {
     console.log(countries)
     return (
         <div>
-            <h1>Hello all countries: {countries.length}</h1>
+            <h1> All countries: {countries.length}</h1>
             <h3>Visited Country Count: {visiteCountry.length}</h3>
             <h3>Flags Click: {visiteFlags.length}</h3>
             <ol>
@@ -41,6 +47,7 @@ const Countris = ({fetchCountries}) => {
              {
                 countries.map(countrie=><Country 
                 handleFlags ={handleFlags} 
+                removeCountry={removeCountry}
 
                 handelCount={handelCount}
                 key={countrie.cca3.cca3} 
